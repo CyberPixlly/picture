@@ -1,0 +1,482 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyberkingfisher's Image Gallery</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            apple: {
+              blue: '#0071E3',
+              gray: '#F5F5F7',
+              darkgray: '#86868B',
+              text: '#1D1D1F'
+            },
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .backdrop-blur-xl {
+        backdrop-filter: blur(24px);
+      }
+      .text-shadow-sm {
+        text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      }
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+      }
+      .dark .glass-effect {
+        background: rgba(30, 30, 30, 0.7);
+        border: 1px solid rgba(50, 50, 50, 0.5);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+      }
+      .liquid-animation {
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .hover-scale {
+        transition: transform 0.3s ease-out;
+      }
+      .hover-scale:hover {
+        transform: scale(1.02);
+      }
+      .gradient-mask {
+        mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+      }
+      .rounded-bold-title {
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        text-rendering: optimizeLegibility;
+      }
+      .toggle-checkbox:checked {
+        right: 0;
+        border-color: #68D391;
+      }
+      .toggle-checkbox:checked + .toggle-label {
+        background-color: #68D391;
+      }
+    }
+  </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0px}.-left-40{left:-10rem}.-right-20{right:-5rem}.-top-40{top:-10rem}.bottom-20{bottom:5rem}.left-0{left:0px}.left-1\/4{left:25%}.right-0{right:0px}.top-0{top:0px}.top-1\/3{top:33.333333%}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-10{margin-bottom:2.5rem}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mb-24{margin-bottom:6rem}.mb-32{margin-bottom:8rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mr-3{margin-right:0.75rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-20{margin-top:5rem}.mt-4{margin-top:1rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-6{height:1.5rem}.h-72{height:18rem}.h-80{height:20rem}.h-96{height:24rem}.h-auto{height:auto}.h-full{height:100%}.min-h-\[70vh\]{min-height:70vh}.min-h-screen{min-height:100vh}.w-12{width:3rem}.w-6{width:1.5rem}.w-72{width:18rem}.w-80{width:20rem}.w-96{width:24rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.max-w-7xl{max-width:80rem}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;user-select:none}.appearance-none{-webkit-appearance:none;appearance:none}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-12{gap:3rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-6 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1.5rem * var(--tw-space-x-reverse));margin-left:calc(1.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-8 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(2rem * var(--tw-space-x-reverse));margin-left:calc(2rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-x-hidden{overflow-x:hidden}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.border-4{border-width:4px}.border-t{border-top-width:1px}.border-gray-200\/50{border-color:rgb(229 231 235 / 0.5)}.bg-apple-blue{--tw-bg-opacity:1;background-color:rgb(0 113 227 / var(--tw-bg-opacity, 1))}.bg-blue-100{--tw-bg-opacity:1;background-color:rgb(219 234 254 / var(--tw-bg-opacity, 1))}.bg-gray-300{--tw-bg-opacity:1;background-color:rgb(209 213 219 / var(--tw-bg-opacity, 1))}.bg-pink-100{--tw-bg-opacity:1;background-color:rgb(252 231 243 / var(--tw-bg-opacity, 1))}.bg-purple-100{--tw-bg-opacity:1;background-color:rgb(243 232 255 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.bg-gradient-to-t{background-image:linear-gradient(to top, var(--tw-gradient-stops))}.from-apple-gray{--tw-gradient-from:#F5F5F7 var(--tw-gradient-from-position);--tw-gradient-to:rgb(245 245 247 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-white\/60{--tw-gradient-from:rgb(255 255 255 / 0.6) var(--tw-gradient-from-position);--tw-gradient-to:rgb(255 255 255 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-transparent{--tw-gradient-to:transparent var(--tw-gradient-to-position)}.to-white{--tw-gradient-to:#fff var(--tw-gradient-to-position)}.object-cover{object-fit:cover}.p-1{padding:0.25rem}.p-8{padding:2rem}.px-4{padding-left:1rem;padding-right:1rem}.px-8{padding-left:2rem;padding-right:2rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.pb-20{padding-bottom:5rem}.pt-32{padding-top:8rem}.pt-8{padding-top:2rem}.text-center{text-align:center}.align-middle{vertical-align:middle}.font-sans{font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-light{font-weight:300}.font-semibold{font-weight:600}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.text-apple-blue{--tw-text-opacity:1;color:rgb(0 113 227 / var(--tw-text-opacity, 1))}.text-apple-darkgray{--tw-text-opacity:1;color:rgb(134 134 139 / var(--tw-text-opacity, 1))}.text-apple-text{--tw-text-opacity:1;color:rgb(29 29 31 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.opacity-50{opacity:0.5}.opacity-60{opacity:0.6}.opacity-70{opacity:0.7}.blur-3xl{--tw-blur:blur(64px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-200{transition-duration:200ms}.duration-300{transition-duration:300ms}.ease-in{transition-timing-function:cubic-bezier(0.4, 0, 1, 1)}.glass-effect {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+      }.dark .glass-effect {
+        background: rgba(30, 30, 30, 0.7);
+        border: 1px solid rgba(50, 50, 50, 0.5);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+      }.hover-scale {
+        transition: transform 0.3s ease-out;
+      }.hover-scale:hover {
+        transform: scale(1.02);
+      }.gradient-mask {
+        mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+      }.rounded-bold-title {
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        text-rendering: optimizeLegibility;
+      }.toggle-checkbox:checked {
+        right: 0;
+        border-color: #68D391;
+      }.toggle-checkbox:checked + .toggle-label {
+        background-color: #68D391;
+      }
+    .hover\:bg-blue-600:hover{--tw-bg-opacity:1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}
+    .hover\:text-apple-blue:hover{--tw-text-opacity:1;color:rgb(0 113 227 / var(--tw-text-opacity, 1))}
+    .dark\:bg-blue-900:is(.dark *){--tw-bg-opacity:1;background-color:rgb(30 58 138 / var(--tw-bg-opacity, 1))}
+    .dark\:bg-gray-600:is(.dark *){--tw-bg-opacity:1;background-color:rgb(75 85 99 / var(--tw-bg-opacity, 1))}
+    .dark\:bg-pink-900:is(.dark *){--tw-bg-opacity:1;background-color:rgb(131 24 67 / var(--tw-bg-opacity, 1))}
+    .dark\:bg-purple-900:is(.dark *){--tw-bg-opacity:1;background-color:rgb(88 28 135 / var(--tw-bg-opacity, 1))}
+    .dark\:from-gray-900:is(.dark *){--tw-gradient-from:#111827 var(--tw-gradient-from-position);--tw-gradient-to:rgb(17 24 39 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}
+    .dark\:from-gray-900\/60:is(.dark *){--tw-gradient-from:rgb(17 24 39 / 0.6) var(--tw-gradient-from-position);--tw-gradient-to:rgb(17 24 39 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}
+    .dark\:to-gray-800:is(.dark *){--tw-gradient-to:#1f2937 var(--tw-gradient-to-position)}
+    .dark\:text-gray-100:is(.dark *){--tw-text-opacity:1;color:rgb(243 244 246 / var(--tw-text-opacity, 1))}
+    .dark\:text-gray-300:is(.dark *){--tw-text-opacity:1;color:rgb(209 213 219 / var(--tw-text-opacity, 1))}
+    .dark\:text-gray-400:is(.dark *){--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}
+    .dark\:opacity-30:is(.dark *){opacity:0.3}
+    @media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}}
+    @media (min-width: 768px){.md\:mt-0{margin-top:0px}.md\:flex{display:flex}.md\:hidden{display:none}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:p-12{padding:3rem}.md\:px-8{padding-left:2rem;padding-right:2rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}.md\:text-6xl{font-size:3.75rem;line-height:1}.md\:text-xl{font-size:1.25rem;line-height:1.75rem}}
+    @media (min-width: 1024px){.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:text-7xl{font-size:4.5rem;line-height:1}}
+  </style></head>
+<body class="bg-gradient-to-br from-apple-gray to-white min-h-screen font-sans text-apple-text overflow-x-hidden dark:from-gray-900 dark:to-gray-800 dark:text-gray-100 transition-colors duration-300">
+  <div class="fixed -top-40 -left-40 w-96 h-96 rounded-full bg-blue-100 blur-3xl opacity-70 animate-blob dark:bg-blue-900 dark:opacity-30"></div>
+  <div class="fixed top-1/3 -right-20 w-80 h-80 rounded-full bg-purple-100 blur-3xl opacity-60 animate-blob animation-delay-2000 dark:bg-purple-900 dark:opacity-30"></div>
+  <div class="fixed bottom-20 left-1/4 w-72 h-72 rounded-full bg-pink-100 blur-3xl opacity-50 animate-blob animation-delay-4000 dark:bg-pink-900 dark:opacity-30"></div>
+
+  <nav class="fixed top-0 left-0 right-0 z-50 glass-effect py-3 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="text-2xl font-semibold tracking-tight rounded-bold-title">
+        <span class="text-apple-blue">Cyber</span>kingfisher
+      </div>
+      
+      <div class="flex items-center space-x-4">
+        <div class="hidden md:flex space-x-8 text-sm text-apple-darkgray dark:text-gray-300">
+          <a href="#" class="hover:text-apple-blue transition-colors duration-300">Home</a>
+          <a href="#" class="hover:text-apple-blue transition-colors duration-300">Gallery</a>
+          <a href="#" class="hover:text-apple-blue transition-colors duration-300">About</a>
+          <a href="#" class="hover:text-apple-blue transition-colors duration-300">Contact</a>
+        </div>
+        
+        <div class="relative inline-block w-12 h-6 align-middle select-none transition duration-200 ease-in">
+          <input type="checkbox" id="toggle-theme" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer">
+          <label for="toggle-theme" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer dark:bg-gray-600"></label>
+        </div>
+        
+        <div class="md:hidden">
+          <button class="text-apple-darkgray hover:text-apple-blue transition-colors duration-300 dark:text-gray-300">
+            <i class="fa fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-7xl mx-auto pt-32 px-4 md:px-8 pb-20">
+    <!-- 搜索区域 -->
+    <section class="mb-16">
+      <div class="max-w-3xl mx-auto glass-effect rounded-3xl p-6">
+        <div class="relative">
+          <input 
+            type="text" 
+            id="search-input"
+            placeholder="搜索图片文件名..." 
+            class="w-full px-6 py-4 rounded-full bg-white/50 dark:bg-gray-800/50 border-0 focus:ring-2 focus:ring-apple-blue dark:focus:ring-apple-blue outline-none transition-all duration-300"
+          >
+          <button 
+            id="search-btn"
+            class="absolute right-3 top-1/2 transform -translate-y-1/2 bg-apple-blue text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-blue-600 transition-colors duration-300"
+          >
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+        <p id="search-result" class="mt-4 text-sm text-apple-darkgray dark:text-gray-400 text-center hidden"></p>
+      </div>
+    </section>
+
+    <!-- 图片画廊区域 -->
+    <section class="mb-24">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-light mb-4 rounded-bold-title">图片素材画廊</h2>
+        <p class="text-apple-darkgray dark:text-gray-400 max-w-2xl mx-auto">浏览 image 目录下的所有图片素材，点击图片可查看大图</p>
+      </div>
+
+      <!-- 图片容器 -->
+      <div id="image-gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- 图片会通过JS动态加载 -->
+        <div class="col-span-full text-center text-apple-darkgray dark:text-gray-400 py-12">
+          加载中...
+        </div>
+      </div>
+    </section>
+
+    <!-- 查看大图模态框 -->
+    <div id="image-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 hidden">
+      <button id="close-modal" class="absolute top-8 right-24 text-white text-3xl hover:text-apple-blue transition-colors duration-300">
+        <i class="fa fa-times"></i>
+      </button>
+      <!-- 下载按钮 -->
+      <button id="download-btn" class="absolute top-8 right-8 text-white text-3xl hover:text-apple-blue transition-colors duration-300" title="下载图片">
+        <i class="fa fa-download"></i>
+      </button>
+      <div class="max-w-5xl max-h-[90vh] glass-effect rounded-3xl p-4">
+        <img id="modal-image" src="" alt="大图预览" class="max-w-full max-h-[80vh] object-contain rounded-2xl">
+        <p id="modal-filename" class="mt-4 text-center text-white text-lg"></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="glass-effect py-12 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="pt-8 border-t border-gray-200/50 text-sm text-apple-darkgray dark:text-gray-400 flex flex-col md:flex-row justify-between items-center">
+        <p>© 2026 Cyberkingfisher. All rights reserved.</p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="#" class="hover:text-apple-blue transition-colors duration-300">Privacy Policy</a>
+          <a href="#" class="hover:text-apple-blue transition-colors duration-300">Terms of Service</a>
+          <a href="#" class="hover:text-apple-blue transition-colors duration-300">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    @keyframes blob {
+      0% {
+        transform: translate(0px, 0px) scale(1);
+      }
+      33% {
+        transform: translate(30px, -50px) scale(1.1);
+      }
+      66% {
+        transform: translate(-20px, 20px) scale(0.9);
+      }
+      100% {
+        transform: translate(0px, 0px) scale(1);
+      }
+    }
+    .animate-blob {
+      animation: blob 7s infinite;
+    }
+    .animation-delay-2000 {
+      animation-delay: 2s;
+    }
+    .animation-delay-4000 {
+      animation-delay: 4s;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    nav.scrolled {
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+    .dark nav.scrolled {
+      background: rgba(30, 30, 30, 0.9);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 图片卡片样式 */
+    .image-card {
+      transition: all 0.3s ease;
+    }
+    .image-card:hover {
+      transform: translateY(-5px);
+    }
+    .image-card img {
+      aspect-ratio: 1/1;
+      object-fit: cover;
+    }
+    
+    /* 下载按钮样式优化 */
+    #download-btn {
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #download-btn:hover {
+      background: rgba(0, 113, 227, 0.8);
+    }
+  </style>
+
+  <script>
+    // 导航栏滚动效果
+    window.addEventListener('scroll', function() {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // 深色模式切换
+    document.addEventListener('DOMContentLoaded', function() {
+      const html = document.documentElement;
+      const themeToggle = document.getElementById('toggle-theme');
+      
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        html.classList.add('dark');
+        themeToggle.checked = true;
+      } else {
+        html.classList.remove('dark');
+        themeToggle.checked = false;
+      }
+      
+      themeToggle.addEventListener('change', function() {
+        if (this.checked) {
+          html.classList.add('dark');
+          localStorage.theme = 'dark';
+        } else {
+          html.classList.remove('dark');
+          localStorage.theme = 'light';
+        }
+      });
+
+      // 图片画廊核心功能
+      initImageGallery();
+    });
+
+    // 图片扩展名白名单
+    const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'bmp'];
+
+    // 初始化图片画廊
+    function initImageGallery() {
+      const galleryContainer = document.getElementById('image-gallery');
+      const searchInput = document.getElementById('search-input');
+      const searchBtn = document.getElementById('search-btn');
+      const searchResult = document.getElementById('search-result');
+      const modal = document.getElementById('image-modal');
+      const modalImage = document.getElementById('modal-image');
+      const modalFilename = document.getElementById('modal-filename');
+      const closeModal = document.getElementById('close-modal');
+      const downloadBtn = document.getElementById('download-btn');
+      
+      // 存储当前选中的图片信息
+      let currentImageUrl = '';
+      let currentImageFilename = '';
+
+      // 模拟获取image目录下的图片（实际部署时需要后端支持，这里先模拟示例）
+      // 实际项目中，需要后端接口返回image目录下的文件列表
+      const imageFiles = [
+        // 示例图片 - 实际使用时替换为真实文件列表
+        'IcanIlike.png',
+        'code.png',
+        '1.png',
+        '2.png',
+        '3.png',
+        '4.png',
+        'example1.jpg',
+        'example2.webp',
+        'example3.gif'
+      ];
+
+      // 渲染所有图片
+      renderImages(imageFiles);
+
+      // 搜索功能
+      searchBtn.addEventListener('click', () => searchImages(imageFiles));
+      searchInput.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') searchImages(imageFiles);
+      });
+
+      // 关闭模态框
+      closeModal.addEventListener('click', () => {
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      });
+
+      // 点击模态框背景关闭
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.add('hidden');
+          document.body.style.overflow = 'auto';
+        }
+      });
+
+      // 下载图片功能
+      downloadBtn.addEventListener('click', downloadImage);
+
+      // 渲染图片函数
+      function renderImages(images) {
+        if (images.length === 0) {
+          galleryContainer.innerHTML = `
+            <div class="col-span-full text-center text-apple-darkgray dark:text-gray-400 py-12">
+              未找到匹配的图片
+            </div>
+          `;
+          return;
+        }
+
+        galleryContainer.innerHTML = '';
+        images.forEach(filename => {
+          // 过滤合法的图片扩展名
+          const ext = filename.split('.').pop().toLowerCase();
+          if (!ALLOWED_EXTENSIONS.includes(ext)) return;
+
+          const card = document.createElement('div');
+          card.className = 'image-card glass-effect rounded-3xl overflow-hidden hover-scale';
+          card.innerHTML = `
+            <img 
+              src="image/${filename}" 
+              alt="${filename}" 
+              class="w-full h-auto object-cover"
+              data-filename="${filename}"
+              style="opacity: 0; transition: opacity 0.8s ease-in-out;"
+            >
+            <div class="p-4 text-center">
+              <p class="text-apple-text dark:text-gray-100 font-medium">${filename}</p>
+            </div>
+          `;
+
+          // 图片加载完成后显示
+          const img = card.querySelector('img');
+          img.onload = () => {
+            img.style.opacity = '1';
+          };
+          if (img.complete) {
+            img.style.opacity = '1';
+          }
+
+          // 点击图片打开模态框
+          img.addEventListener('click', () => {
+            // 保存当前图片信息
+            currentImageUrl = img.src;
+            currentImageFilename = filename;
+            
+            // 显示模态框
+            modalImage.src = currentImageUrl;
+            modalFilename.textContent = currentImageFilename;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+          });
+
+          galleryContainer.appendChild(card);
+        });
+      }
+
+      // 搜索图片函数
+      function searchImages(images) {
+        const keyword = searchInput.value.trim().toLowerCase();
+        if (!keyword) {
+          renderImages(images);
+          searchResult.classList.add('hidden');
+          return;
+        }
+
+        const filtered = images.filter(filename => 
+          filename.toLowerCase().includes(keyword)
+        );
+
+        renderImages(filtered);
+        
+        // 显示搜索结果提示
+        searchResult.textContent = `找到 ${filtered.length} 个匹配结果 (关键词: "${keyword}")`;
+        searchResult.classList.remove('hidden');
+      }
+
+      // 下载图片函数
+      function downloadImage() {
+        if (!currentImageUrl || !currentImageFilename) return;
+        
+        // 创建临时链接
+        const link = document.createElement('a');
+        link.href = currentImageUrl;
+        link.download = currentImageFilename;
+        
+        // 触发下载
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // 下载反馈（可选）
+        downloadBtn.classList.add('text-green-500');
+        setTimeout(() => {
+          downloadBtn.classList.remove('text-green-500');
+        }, 1000);
+      }
+    }
+  </script>
+</body>
